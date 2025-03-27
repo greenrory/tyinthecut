@@ -125,8 +125,6 @@
         .hero {
             margin-top: 76px;
             background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-            color: white;
-            text-align: center;
             padding: 8rem 2rem 13rem;
             position: relative;
             overflow: visible;
@@ -137,108 +135,60 @@
             min-height: 80vh;
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
             background: 
                 radial-gradient(circle at 20% 20%, rgba(230, 57, 70, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(69, 123, 157, 0.15) 0%, transparent 50%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54 0h6v6h-6zM0 54h6v6H0z' fill='rgba(255, 255, 255, 0.03)' fill-rule='evenodd'/%3E%3C/svg%3E");
+                radial-gradient(circle at 80% 80%, rgba(69, 123, 157, 0.15) 0%, transparent 50%);
+            animation: gradientMove 15s ease infinite;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(230, 57, 70, 0.1);
-            border: 1px solid rgba(230, 57, 70, 0.2);
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            color: #ff4d5a;
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: 180px;
             margin-bottom: 2rem;
+            filter: drop-shadow(0 0 30px rgba(230, 57, 70, 0.3));
+            animation: floatLogo 6s ease-in-out infinite;
         }
 
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            letter-spacing: -1.5px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 650px;
-            margin: 0 auto;
-            color: #a0a0a0;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .hero-features {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #a0a0a0;
-        }
-
-        .hero-feature i {
-            color: var(--accent);
-            font-size: 1.25rem;
+        @keyframes floatLogo {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .booking-section {
-            padding: 6rem 2rem;
-            padding-top: 0;
-            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-            position: relative;
-            overflow: visible;
             margin-top: -10rem;
-        }
-
-        .booking-section::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-            clip-path: ellipse(70% 100% at 50% 100%);
+            padding-bottom: 4rem;  /* Reduced bottom padding */
         }
 
         .form-container {
             position: relative;
-            background: white;
+            background: rgba(255, 255, 255, 0.98);
             max-width: 576px;
             margin: 0 auto;
-            margin-top: -5rem;
             border-radius: 24px;
             box-shadow: 
                 0 20px 40px rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                0 0 40px rgba(230, 57, 70, 0.2);
             overflow: hidden;
             transition: transform 0.3s ease;
             z-index: 2;
@@ -249,92 +199,7 @@
             box-shadow: 
                 0 25px 50px rgba(0, 0, 0, 0.25),
                 0 0 0 1px rgba(255, 255, 255, 0.15),
-                0 0 30px rgba(230, 57, 70, 0.2);
-        }
-
-        .testimonials {
-            padding: var(--space-xl) 0;
-            background: var(--gradient-surface);
-            position: relative;
-        }
-
-        .testimonials h2 {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: var(--space-lg);
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .testimonials-grid {
-            width: var(--width-content);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-md);
-            padding: 0 var(--space-sm);
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: var(--blur-sm);
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-accent);
-        }
-
-        .testimonial-card p {
-            color: var(--text-muted);
-            margin-bottom: var(--space-sm);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .client-name {
-            color: var(--accent);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .client-name i {
-            color: var(--accent);
-            font-size: 1.25rem;
-            opacity: 0.9;
-        }
-
-        .footer {
-            background: var(--gradient-dark);
-            padding: var(--space-lg) 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
-        }
-
-        .footer p {
-            width: var(--width-content);
-            margin: 0 auto;
-            color: var(--text-muted);
-            position: relative;
-            font-size: 1.1rem;
-            line-height: 1.8;
+                0 0 60px rgba(230, 57, 70, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -344,10 +209,6 @@
             
             .hero p {
                 font-size: 1.1rem;
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -368,68 +229,21 @@
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class='bx bx-check-circle'></i>
-                Charleston's Premier Barbershop
-            </div>
-            <h1>Elevate Your Style</h1>
-            <p>Where precision meets artistry. Experience exceptional grooming with Charleston's best.</p>
-            <div class="hero-features">
-                <div class="hero-feature">
-                    <i class='bx bx-check-circle'></i>
-                    <span>Expert Precision Cuts</span>
-                </div>
-                <div class="hero-feature">
-                    <i class='bx bx-check-circle'></i>
-                    <span>Modern Styling</span>
-                </div>
-                <div class="hero-feature">
-                    <i class='bx bx-check-circle'></i>
-                    <span>Premium Experience</span>
-                </div>
-            </div>
-        </div>
+        <svg class="hero-logo" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="56" height="56" rx="28" fill="#1a1a1a"/>
+            <path d="M18 18L38 38M38 18L18 38" stroke="#e63946" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="28" cy="28" r="12" stroke="#457b9d" stroke-width="2" fill="none"/>
+            <path d="M22 28h12M28 22v12" stroke="#457b9d" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
     </section>
 
     <section class="booking-section">
         <div class="form-container">
             <iframe
                 src="https://www.aquaedge.co/share/cm8iy2h7t0003k003vkwz1byi"
-                style="width:100%;max-width:576px;height:700px;border:none;padding:32px;display:block;margin:0 auto;"
+                style="width:100%;max-width:576px;height:650px;border:none;padding:32px;display:block;margin:0 auto;"
             ></iframe>
         </div>
     </section>
-
-    <section class="testimonials">
-        <h2>Client Stories</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p>"Ty's attention to detail is unmatched. Every cut is perfectly executed, exactly how you want it. Best barber in Charleston, hands down."</p>
-                <div class="client-name">
-                    <i class='bx bx-check-circle'></i>
-                    - Marcus D.
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <p>"Found my forever barber. Ty doesn't just cut hair, he creates an experience. Professional, skilled, and always on point."</p>
-                <div class="client-name">
-                    <i class='bx bx-check-circle'></i>
-                    - James R.
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <p>"The level of precision and care that goes into each cut is remarkable. Ty truly understands the art of barbering."</p>
-                <div class="client-name">
-                    <i class='bx bx-check-circle'></i>
-                    - Chris M.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p>© 2025 Ty in the Cut. Elevating the art of barbering in Charleston, South Carolina. Experience the difference.</p>
-    </footer>
 </body>
 </html>
